@@ -43,7 +43,7 @@ class ZhaopinPipeline(object):
         com_dress		= ""
         com_intro		= ""
 
-        url 			= item["url"]
+        url             = item["url"]
 
         for ite in item["name"]:
             name 		+= ite
