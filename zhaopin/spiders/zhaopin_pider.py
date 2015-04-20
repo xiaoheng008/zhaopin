@@ -40,20 +40,21 @@ class CitySpider(Spider):
             sites_url = sel.xpath('//span[@class="search_list_zw search_list_first"]/a')
             #pider the url of job's and return the request of the url's
             for site in sites_url:
-                url = site.xpath('@href').extract()
-                # sql = "select count(*) from job where url='%s'" % url[0]
-                # self.cursor.execute(sql)
-                # data = self.cursor.fetchone()
-                # if data[0] == 0:
-                yield Request(url[0], callback=self.my_parse)
+                url = site.xpath('@href').extract()[0][:-6]
+                sql = "select count(*) from job where url='%s'" % url
+                self.cursor.execute(sql)
+                data = self.cursor.fetchone()
+                if data[0] == 0:
+                    # print url
+                    yield Request(url, callback=self.my_parse)
                 # else:
-                #     print "it is chongfu : %s" % url[0]
+                #     print "it is chongfu : %s" % url
 
     def my_parse(self, response):
         sel         = Selector(response)
         item_job    = JobItem()
 
-        item_job["url"]         = response._get_url()[:-8]
+        item_job["url"]         = response._get_url()
         # item_job["name"]        = sel.xpath('//div[@class="inner-left fl"]/h1/text()').extract()
         item_job["name"]        = [n.encode('utf-8') for n in sel.xpath('//div[@class="inner-left fl"]/h1/text()').extract()]
         item_job["company"]     = [n.encode('utf-8') for n in sel.xpath('//div[@class="inner-left fl"]/h2/a/text()').extract()]
