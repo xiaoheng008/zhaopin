@@ -121,5 +121,3 @@ class ZhaopinPipeline(object):
         except:
             self.db.rollback()
             #print "it's error on job : %s" % sql
-
-
