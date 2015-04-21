@@ -25,6 +25,8 @@ class CitySpider(Spider):
             charset='utf8')                         
         self.cursor = self.db.cursor()
 
+    def __del__(self):
+        self.db.close()
 
     def parse(self, response):
         sel = Selector(response)
@@ -65,7 +67,7 @@ class CitySpider(Spider):
         item_job["mon_pay"]     = [n.encode('utf-8') for n in sites[0].xpath('./strong/text()').extract()]
         item_job["place"]       = [n.encode('utf-8') for n in sites[1].xpath('./strong/a/text()').extract()]
         item_job["sub_place"]   = [n.encode('utf-8') for n in sites[1].xpath('./strong/text()').extract()]
-        item_job["date"]        = [n.encode('utf-8') for n in sites[2].xpath('./strong/span/text()').extract()]
+        # item_job["date"]        = [n.encode('utf-8') for n in sites[2].xpath('./strong/span/text()').extract()]
         item_job["job_prop"]    = [n.encode('utf-8') for n in sites[3].xpath('./strong/text()').extract()]
         item_job["exper"]       = [n.encode('utf-8') for n in sites[4].xpath('./strong/text()').extract()]
         item_job["edu"]         = [n.encode('utf-8') for n in sites[5].xpath('./strong/text()').extract()]
