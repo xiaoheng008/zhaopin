@@ -20,8 +20,8 @@ class ZhaopinPipeline(object):
         self.db.close()
 
     def process_item(self, item, spider):
-        url				= ""
-        name 			= ""
+        url             = ""
+        name            = ""
         company			= ""
         welfare 		= ""
         mon_pay			= ""
@@ -31,8 +31,8 @@ class ZhaopinPipeline(object):
         sub_place 		= ""
         job_prop		= ""
         exper			= ""
-        edu				= ""
-        num				= ""
+        edu             = ""
+        num             = ""
         classify		= ""
         descr			= ""
         com_url			= ""
