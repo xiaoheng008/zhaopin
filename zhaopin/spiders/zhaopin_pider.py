@@ -37,18 +37,20 @@ class CitySpider(Spider):
             match_num   = re.search(pattern, current_url, re.M | re.I)
             num         = string.atoi(match_num.group(1)) + 1
             next_url    = "http://jobs.zhaopin.com/pd1/p" + str(num)
+
             yield Request(next_url, callback=self.parse)    #return the request of the next page's
             
             sites_url = sel.xpath('//span[@class="search_list_zw search_list_first"]/a')
+
             #pider the url of job's and return the request of the url's
             for site in sites_url:
                 url = site.xpath('@href').extract()[0][:-6]
-                sql = "select count(*) from job where url='%s'" % url
-                self.cursor.execute(sql)
-                data = self.cursor.fetchone()
-                if data[0] == 0:
+                # sql = "select count(*) from job where url='%s'" % url
+                # self.cursor.execute(sql)
+                # data = self.cursor.fetchone()
+                # if data[0] == 0:
                     # print url
-                    yield Request(url, callback=self.my_parse)
+                yield Request(url, callback=self.my_parse)
                 # else:
                 #     print "it is chongfu : %s" % url
 

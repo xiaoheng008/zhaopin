@@ -97,27 +97,46 @@ class ZhaopinPipeline(object):
         com_dress 			= com_dress.strip()
         com_indust			= com_indust.strip()
 
-        sql = "insert into company(com_url, com_name, com_scale, com_prop, com_indust, com_home, \
-            com_dress, com_intro) \
-            values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s') " % \
-            (com_url, company, com_scale, com_prop, com_indust, com_home, com_dress, com_intro)
-        try:
-            self.cursor.execute(sql)
-            self.db.commit()
-            # raise DropItem("It is ends")
-        except:
-            self.db.rollback()
-            # print "it's error on job : %s" % sql
+        # sql = "insert into company(com_url, com_name, com_scale, com_prop, com_indust, com_home, \
+        #     com_dress, com_intro) \
+        #     values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s') " % \
+        #     (com_url, company, com_scale, com_prop, com_indust, com_home, com_dress, com_intro)
+        # try:
+        #     self.cursor.execute(sql)
+        #     self.db.commit()
+        #     # raise DropItem("It is ends")
+        # except:
+        #     self.db.rollback()
+        #     # print "it's error on job : %s" % sql
 
-        sql = "insert into job(url, name, company, welfare, mon_pay_down, mon_pay_up, place, sub_place, \
-            job_prop, exper, edu, num, classify, descr) \
-            values ('%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" % \
-            (url, name, company, welfare, mon_pay_down, mon_pay_up, place, sub_place, job_prop,
-            exper, edu, num, classify, descr)
-        try:
-            self.cursor.execute(sql)
-            self.db.commit()
-            #raise DropItem("It is ends")
-        except:
-            self.db.rollback()
-            #print "it's error on job : %s" % sql
+        sql = "select ID from job where url='%s'" % url
+        self.cursor.execute(sql)
+        data = self.cursor.fetchone()
+        if not data:
+            sql = "insert into job(url, name, company, welfare, mon_pay_down, mon_pay_up, place, sub_place, job_prop, \
+                exper, edu, num, classify, descr, com_url, com_scale, com_prop, com_indust, com_home,com_dress, com_intro) \
+                values ('%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" % \
+                (url, name, company, welfare, mon_pay_down, mon_pay_up, place, sub_place, job_prop,
+                exper, edu, num, classify, descr, com_url, com_scale, com_prop, com_indust, com_home, com_dress, com_intro)
+            try:
+                self.cursor.execute(sql)
+                self.db.commit()
+                #raise DropItem("It is ends")
+            except:
+                self.db.rollback()
+                #print "it's error on job : %s" % sql
+        else:
+            sql = "update job set date=now() where ID=%d" % data[0]
+            # sql = "update into job(url, name, company, welfare, mon_pay_down, mon_pay_up, place, sub_place, job_prop, \
+            #     exper, edu, num, classify, descr, com_url, com_scale, com_prop, com_indust, com_home,com_dress, com_intro) \
+            #     values ('%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" % \
+            #     (url, name, company, welfare, mon_pay_down, mon_pay_up, place, sub_place, job_prop,
+            #     exper, edu, num, classify, descr, com_url, com_scale, com_prop, com_indust, com_home, com_dress, com_intro)
+            try:
+                self.cursor.execute(sql)
+                self.db.commit()
+                print "sueecssful"
+                #raise DropItem("It is ends")
+            except:
+                self.db.rollback()
+                #print "it's error on job : %s" % sql
