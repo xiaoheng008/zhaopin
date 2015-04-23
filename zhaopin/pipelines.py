@@ -22,26 +22,26 @@ class ZhaopinPipeline(object):
     def process_item(self, item, spider):
         url             = ""
         name            = ""
-        company			= ""
-        welfare 		= ""
-        mon_pay			= ""
-        mon_pay_down	= 0
-        mon_pay_up		= 0
-        place			= ""
-        sub_place 		= ""
-        job_prop		= ""
-        exper			= ""
+        company         = ""
+        welfare         = ""
+        mon_pay         = ""
+        mon_pay_down    = 0
+        mon_pay_up      = 0
+        place           = ""
+        sub_place       = ""
+        job_prop        = ""
+        exper           = ""
         edu             = ""
         num             = ""
-        classify		= ""
-        descr			= ""
-        com_url			= ""
-        com_scale		= ""
-        com_prop		= ""
-        com_indust		= ""
-        com_home		= ""
-        com_dress		= ""
-        com_intro		= ""
+        classify        = ""
+        descr           = ""
+        com_url         = ""
+        com_scale       = ""
+        com_prop        = ""
+        com_indust      = ""
+        com_home        = ""
+        com_dress       = ""
+        com_intro       = ""
 
         url             = item["url"]
 
