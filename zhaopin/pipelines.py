@@ -113,9 +113,10 @@ class ZhaopinPipeline(object):
         self.cursor.execute(sql)
         data = self.cursor.fetchone()
         if not data:
-            sql = "insert into job(url, name, company, welfare, mon_pay_down, mon_pay_up, place, sub_place, job_prop, \
-                exper, edu, num, classify, descr, com_url, com_scale, com_prop, com_indust, com_home,com_dress, com_intro) \
-                values ('%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" % \
+            sql = "insert into job(url, name, company, welfare, mon_pay_down, mon_pay_up, place, sub_place, job_prop, " \
+                  "exper, edu, num, classify, descr, com_url, com_scale, com_prop, com_indust, com_home,com_dress, com_intro) " \
+                  "values ('%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', " \
+                  "'%s', '%s', '%s', '%s', '%s')" % \
                 (url, name, company, welfare, mon_pay_down, mon_pay_up, place, sub_place, job_prop,
                 exper, edu, num, classify, descr, com_url, com_scale, com_prop, com_indust, com_home, com_dress, com_intro)
             try:
