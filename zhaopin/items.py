@@ -15,7 +15,7 @@ class JobItem(scrapy.Item):
     mon_pay     = scrapy.Field()    #月薪
     place       = scrapy.Field()    #工作地点
     sub_place   = scrapy.Field()    #子工作地点
-    # date        = scrapy.Field()  #发布日期
+    # date        = scrapy.Field()    #发布日期
     job_prop    = scrapy.Field()    #工作性质
     exper       = scrapy.Field()    #工作经验
     edu         = scrapy.Field()    #最低学历
