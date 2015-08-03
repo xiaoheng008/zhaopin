@@ -1,1 +1,5 @@
 这个一个网络爬虫项目，使用基于Python的网络爬虫框架Scrapy，针对智联招聘网站定向爬取它上面的招聘信息。
+主要代码：
+zhaopin/items.py存放的是数据的定义
+zhaopin/spider/zhaopin_spider.py存放的是具体的爬取代码
+zhaopin/pipeline.py是数据处理与存储过程
